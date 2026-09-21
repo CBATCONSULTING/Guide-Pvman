@@ -30,6 +30,8 @@
     @media(max-width:560px){.topbar{padding:9px 13px}.topbar .brand-sub{display:none}.brand-mark{width:40px;height:40px}.layout{padding:14px 12px 45px;gap:14px}.hero,section{padding:19px;border-radius:17px}.hero h1{font-size:32px}.notice{padding:14px}.calc-row{grid-template-columns:1fr}.length-fields{grid-template-columns:1fr}.format-options{display:grid}.format-choice{justify-content:space-between}.version{display:none}}
     @media print{.auth-gate,header,.sidebar,.calc-actions{display:none!important}.layout{display:block;padding:0}.hero{background:#fff;color:#000;box-shadow:none;border:1px solid #ddd}.hero p,.eyebrow{color:#333}section{break-inside:avoid;box-shadow:none}.quick div{border-color:#ccc;background:#fff}.footer{padding:10px}}
   </style>
+  <link rel="icon" href="./favicon.ico?v=111" sizes="any">
+  <link rel="shortcut icon" href="./favicon.ico?v=111" type="image/x-icon">
 </head>
 <body>
   <div id="authGate" class="auth-gate">
@@ -47,7 +49,7 @@
   <div id="app" class="hidden">
     <header><div class="topbar">
       <div class="brand"><div class="brand-mark">CB</div><div><div class="brand-title">Guide du PVMAN</div><div class="brand-sub">Challenge Bat</div></div></div>
-      <div class="header-actions"><span class="version">V1.1.0</span><span id="userEmail" class="user-pill"></span><button id="logoutBtn" class="logout">Déconnexion</button></div>
+      <div class="header-actions"><span class="version">V1.1.1</span><span id="userEmail" class="user-pill"></span><button id="logoutBtn" class="logout">Déconnexion</button></div>
     </div></header>
 
     <div class="layout">
@@ -108,7 +110,6 @@
             <div class="calc-row"><div class="calc-label">Habillages latéraux</div><div class="format-options"><label class="format-choice"><input type="checkbox" data-toggle="hl80">62 × 80 <input id="hl80" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="hl220">62 × 220 <input id="hl220" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="hl240">62 × 240 <input id="hl240" class="qty" type="number" min="0" value="0" disabled></label></div></div>
             <div class="calc-row"><div class="calc-label">Jambages</div><div class="format-options"><label class="format-choice"><input type="checkbox" data-toggle="j88">62 × 88 <input id="j88" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="j228">62 × 228 <input id="j228" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="j248">62 × 248 <input id="j248" class="qty" type="number" min="0" value="0" disabled></label></div></div>
             <div class="calc-row"><div class="calc-label">Habillages horizontaux</div><div class="length-fields"><div class="field"><label for="under39">Sous meubles hauts, profondeur 39 cm — longueur totale (cm)</label><input id="under39" type="number" min="0" value="0"></div><div class="field"><label for="over39">Dessus meubles hauts, profondeur 39 cm — longueur totale (cm)</label><input id="over39" type="number" min="0" value="0"></div><div class="field"><label for="over60">Sur-meubles profondeur 60 cm — longueur totale (cm)</label><input id="over60" type="number" min="0" value="0"></div></div></div>
-            <div class="calc-row"><div class="calc-label">Jambages de sur-meubles</div><div class="length-fields"><div class="field"><label for="surJHeight">Hauteur du jambage, largeur 62 cm (cm)</label><input id="surJHeight" type="number" min="0" value="0"></div><div class="field"><label for="surJQty">Quantité</label><input id="surJQty" type="number" min="0" value="0"></div></div></div>
             <div class="calc-row"><div class="calc-label">Chutes déjà disponibles</div><div class="field" style="margin:0"><label for="fullChutes28">Chutes de 62 cm de large et d'au moins 28 cm de long</label><input id="fullChutes28" type="number" min="0" value="0"><span class="small">Elles seront utilisées en priorité pour rallonger les jambages de 248 cm.</span></div></div>
           </div>
           <div class="calc-actions"><button id="calculate" class="primary" type="button">Calculer les panneaux</button><button id="resetCalc" class="secondary" type="button">Réinitialiser</button><button id="printCalc" class="secondary" type="button">Imprimer</button></div>
@@ -131,7 +132,7 @@
         </section>
         <div id="noResults" class="no-results hidden">Aucune rubrique ne correspond à cette recherche.</div>
       </main>
-    </div><div class="footer">Guide interne Challenge Bat · Version 1.1.0 · Document évolutif</div>
+    </div><div class="footer">Guide interne Challenge Bat · Version 1.1.1 · Document évolutif</div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
@@ -179,9 +180,6 @@
       if(standardLength){add(panels,'62 × 240',Math.ceil(standardLength/240));detail.push(`${standardLength} cm d'habillage horizontal, profondeur 39 cm : ${Math.ceil(standardLength/240)} panneau(x) 62 × 240.`)}
       const deepLength=n('over60');
       if(deepLength){add(panels,'62 × 240',Math.ceil(deepLength/240));detail.push(`${deepLength} cm d'habillage de sur-meubles, profondeur 60 cm : ${Math.ceil(deepLength/240)} panneau(x) 62 × 240.`)}
-
-      const sjh=n('surJHeight'),sjq=Math.floor(n('surJQty'));
-      if(sjh&&sjq){if(sjh<=80)add(panels,'62 × 80',sjq);else if(sjh<=220)add(panels,'62 × 220',sjq);else if(sjh<=240)add(panels,'62 × 240',sjq);else if(sjh<=248){add(panels,'62 × 220',sjq);const missing=Math.max(0,sjq-Math.floor(n('fullChutes28')));add(panels,'62 × 80',Math.ceil(missing/2));warnings.push('Les chutes affectées aux jambages de sur-meubles doivent être vérifiées avec celles déjà utilisées pour les jambages 248.')}else warnings.push('Hauteur de jambage de sur-meuble supérieure à 248 cm : étude manuelle nécessaire.');detail.push(`${sjq} jambage(s) de sur-meuble, largeur 62 cm et hauteur ${sjh} cm.`)}
 
       const entries=Object.entries(panels).filter(([,v])=>v>0);const total=entries.reduce((s,[,v])=>s+v,0);const out=$("calcResult");out.classList.remove('hidden');
       if(!entries.length){out.innerHTML='<b>Aucun élément sélectionné.</b>';return}
