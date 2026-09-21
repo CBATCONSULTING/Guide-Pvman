@@ -30,8 +30,8 @@
     @media(max-width:560px){.topbar{padding:9px 13px}.topbar .brand-sub{display:none}.brand-mark{width:40px;height:40px}.layout{padding:14px 12px 45px;gap:14px}.hero,section{padding:19px;border-radius:17px}.hero h1{font-size:32px}.notice{padding:14px}.calc-row{grid-template-columns:1fr}.length-fields{grid-template-columns:1fr}.format-options{display:grid}.format-choice{justify-content:space-between}.version{display:none}}
     @media print{.auth-gate,header,.sidebar,.calc-actions{display:none!important}.layout{display:block;padding:0}.hero{background:#fff;color:#000;box-shadow:none;border:1px solid #ddd}.hero p,.eyebrow{color:#333}section{break-inside:avoid;box-shadow:none}.quick div{border-color:#ccc;background:#fff}.footer{padding:10px}}
   </style>
-  <link rel="icon" href="./favicon.ico?v=111" sizes="any">
-  <link rel="shortcut icon" href="./favicon.ico?v=111" type="image/x-icon">
+  <link rel="icon" href="./favicon.ico?v=120" sizes="any">
+  <link rel="shortcut icon" href="./favicon.ico?v=120" type="image/x-icon">
 </head>
 <body>
   <div id="authGate" class="auth-gate">
@@ -49,7 +49,7 @@
   <div id="app" class="hidden">
     <header><div class="topbar">
       <div class="brand"><div class="brand-mark">CB</div><div><div class="brand-title">Guide du PVMAN</div><div class="brand-sub">Challenge Bat</div></div></div>
-      <div class="header-actions"><span class="version">V1.1.1</span><span id="userEmail" class="user-pill"></span><button id="logoutBtn" class="logout">Déconnexion</button></div>
+      <div class="header-actions"><span class="version">V1.2.0</span><span id="userEmail" class="user-pill"></span><button id="logoutBtn" class="logout">Déconnexion</button></div>
     </div></header>
 
     <div class="layout">
@@ -101,7 +101,7 @@
           <div class="callout warning"><strong>Travaux non bloquants</strong>Établir un devis séparé afin de distinguer clairement les prestations complémentaires du périmètre nécessaire à la pose.</div>
         </section>
 
-        <section id="calpinage" class="searchable"><h2>🪚 Calpinage des panneaux de finition</h2><p class="lead">Cochez uniquement les éléments nécessaires et indiquez leur quantité. Le calculateur utilise les formats de panneaux Challenge Bat et réemploie les chutes connues avant de proposer un panneau supplémentaire.</p>
+        <section id="calpinage" class="searchable"><h2>🪚 Calpinage des panneaux de finition</h2><p class="lead">Cochez les éléments nécessaires et indiquez leur quantité ou leur longueur totale. Le calculateur choisit les panneaux, organise les découpes et réemploie automatiquement les chutes produites avant de proposer un panneau supplémentaire.</p>
           <div class="callout"><strong>Fileurs</strong>Les calculs sont prévus pour des fileurs de largeur maximale 18 cm. Les chants visibles, le sens du décor et les contraintes particulières restent à contrôler avant commande.</div>
           <div class="calc-table">
             <div class="calc-row"><div class="calc-label">Fileurs bas</div><div class="format-options"><label class="format-choice"><input type="checkbox" data-toggle="fb80">80 cm <input id="fb80" class="qty" type="number" min="0" value="0" disabled aria-label="Quantité fileurs bas 80"></label><label class="format-choice"><input type="checkbox" data-toggle="fb88">88 cm <input id="fb88" class="qty" type="number" min="0" value="0" disabled aria-label="Quantité fileurs bas 88"></label></div></div>
@@ -109,8 +109,7 @@
             <div class="calc-row"><div class="calc-label">Fileurs colonne</div><div class="format-options"><label class="format-choice"><input type="checkbox" data-toggle="fc220">220 cm <input id="fc220" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="fc228">228 cm <input id="fc228" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="fc240">240 cm <input id="fc240" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="fc248">248 cm <input id="fc248" class="qty" type="number" min="0" value="0" disabled></label></div></div>
             <div class="calc-row"><div class="calc-label">Habillages latéraux</div><div class="format-options"><label class="format-choice"><input type="checkbox" data-toggle="hl80">62 × 80 <input id="hl80" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="hl220">62 × 220 <input id="hl220" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="hl240">62 × 240 <input id="hl240" class="qty" type="number" min="0" value="0" disabled></label></div></div>
             <div class="calc-row"><div class="calc-label">Jambages</div><div class="format-options"><label class="format-choice"><input type="checkbox" data-toggle="j88">62 × 88 <input id="j88" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="j228">62 × 228 <input id="j228" class="qty" type="number" min="0" value="0" disabled></label><label class="format-choice"><input type="checkbox" data-toggle="j248">62 × 248 <input id="j248" class="qty" type="number" min="0" value="0" disabled></label></div></div>
-            <div class="calc-row"><div class="calc-label">Habillages horizontaux</div><div class="length-fields"><div class="field"><label for="under39">Sous meubles hauts, profondeur 39 cm — longueur totale (cm)</label><input id="under39" type="number" min="0" value="0"></div><div class="field"><label for="over39">Dessus meubles hauts, profondeur 39 cm — longueur totale (cm)</label><input id="over39" type="number" min="0" value="0"></div><div class="field"><label for="over60">Sur-meubles profondeur 60 cm — longueur totale (cm)</label><input id="over60" type="number" min="0" value="0"></div></div></div>
-            <div class="calc-row"><div class="calc-label">Chutes déjà disponibles</div><div class="field" style="margin:0"><label for="fullChutes28">Chutes de 62 cm de large et d'au moins 28 cm de long</label><input id="fullChutes28" type="number" min="0" value="0"><span class="small">Elles seront utilisées en priorité pour rallonger les jambages de 248 cm.</span></div></div>
+            <div class="calc-row"><div class="calc-label">Habillages horizontaux</div><div class="length-fields"><div class="field"><label for="under39">Sous meubles hauts, profondeur 39 cm — longueur totale (cm)</label><input id="under39" type="number" min="0" value="0"></div><div class="field"><label for="over39">Dessus meubles hauts, profondeur 39 cm — longueur totale (cm)</label><input id="over39" type="number" min="0" value="0"></div><div class="field"><label for="under60">Sous meubles, profondeur 60 cm — longueur totale (cm)</label><input id="under60" type="number" min="0" value="0"></div><div class="field"><label for="over60">Dessus meubles, profondeur 60 cm — longueur totale (cm)</label><input id="over60" type="number" min="0" value="0"></div></div></div>
           </div>
           <div class="calc-actions"><button id="calculate" class="primary" type="button">Calculer les panneaux</button><button id="resetCalc" class="secondary" type="button">Réinitialiser</button><button id="printCalc" class="secondary" type="button">Imprimer</button></div>
           <div id="calcResult" class="result hidden" aria-live="polite"></div>
@@ -132,7 +131,7 @@
         </section>
         <div id="noResults" class="no-results hidden">Aucune rubrique ne correspond à cette recherche.</div>
       </main>
-    </div><div class="footer">Guide interne Challenge Bat · Version 1.1.1 · Document évolutif</div>
+    </div><div class="footer">Guide interne Challenge Bat · Version 1.2.0 · Document évolutif</div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
@@ -153,37 +152,59 @@
     document.querySelectorAll('[data-toggle]').forEach(cb=>cb.addEventListener('change',()=>{const input=$(cb.dataset.toggle);input.disabled=!cb.checked;if(cb.checked&&+input.value===0)input.value=1;if(!cb.checked)input.value=0}));
     const n=id=>Math.max(0,Number($(id)?.value)||0);
     const q=id=>{const input=$(id);const cb=document.querySelector(`[data-toggle="${id}"]`);return cb?.checked?Math.floor(Math.max(0,Number(input.value)||0)):0};
-    const add=(obj,key,value)=>{if(value>0)obj[key]=(obj[key]||0)+Math.ceil(value)};
+    const catalog=[{w:39,l:86},{w:39,l:106},{w:39,l:240},{w:62,l:80},{w:62,l:220},{w:62,l:240}];
+    const piece=(label,w,l,preferredWidth=62,priority=1,preferredLength=0)=>({label,w,l,preferredWidth,priority,preferredLength});
+    const repeat=(list,count,make)=>{for(let i=0;i<count;i++)list.push(make(i))};
+    const addLength=(list,id,label,depth)=>{let length=n(id);while(length>0){const cut=Math.min(240,length);list.push(piece(label,depth,cut,62,0,240));length-=cut}};
+    const prune=rects=>rects.filter((a,i)=>a.w>0&&a.l>0&&!rects.some((b,j)=>i!==j&&a.x>=b.x&&a.y>=b.y&&a.x+a.w<=b.x+b.w&&a.y+a.l<=b.y+b.l));
+    function placeIn(bin,p){
+      let best=-1,score=Infinity;
+      bin.free.forEach((r,i)=>{if(p.w<=r.w&&p.l<=r.l){const s=r.w*r.l-p.w*p.l;if(s<score){score=s;best=i}}});
+      if(best<0)return false;
+      const r=bin.free.splice(best,1)[0];
+      bin.cuts.push({...p,x:r.x,y:r.y});
+      if(r.w>p.w)bin.free.push({x:r.x+p.w,y:r.y,w:r.w-p.w,l:p.l});
+      if(r.l>p.l)bin.free.push({x:r.x,y:r.y+p.l,w:r.w,l:r.l-p.l});
+      bin.free=prune(bin.free);return true;
+    }
+    function newPanelFor(p){
+      const fits=catalog.filter(x=>x.w>=p.w&&x.l>=p.l);
+      const exact=fits.filter(x=>x.w===p.preferredWidth&&(!p.preferredLength||x.l===p.preferredLength));
+      const preferred=fits.filter(x=>x.w===p.preferredWidth);
+      return (exact.length?exact:preferred.length?preferred:fits).sort((a,b)=>a.w*a.l-b.w*b.l)[0];
+    }
+    function pack(pieces){
+      const bins=[];
+      pieces.sort((a,b)=>a.priority-b.priority||b.w-a.w||b.l-a.l);
+      pieces.forEach(p=>{
+        let candidates=bins.map((bin,i)=>({bin,i,fit:bin.free.some(r=>p.w<=r.w&&p.l<=r.l)})).filter(x=>x.fit).sort((a,b)=>{
+          const waste=bin=>Math.min(...bin.free.filter(r=>p.w<=r.w&&p.l<=r.l).map(r=>r.w*r.l-p.w*p.l));
+          return waste(a.bin)-waste(b.bin);
+        });
+        if(candidates.length){placeIn(candidates[0].bin,p);return}
+        const panel=newPanelFor(p);if(!panel)return;
+        const bin={w:panel.w,l:panel.l,free:[{x:0,y:0,w:panel.w,l:panel.l}],cuts:[]};placeIn(bin,p);bins.push(bin);
+      });return bins;
+    }
     $("calculate").onclick=()=>{
-      const panels={},detail=[],warnings=[];
-      const fb80=q('fb80'),fb88=q('fb88'),fh60=q('fh60'),fh80=q('fh80'),fh100=q('fh100');
-      const fc220=q('fc220'),fc228=q('fc228'),fc240=q('fc240'),fc248=q('fc248');
-      const hl80=q('hl80'),hl220=q('hl220'),hl240=q('hl240'),j88=q('j88'),j228=q('j228'),j248=q('j248');
-
-      if(fb80){add(panels,'62 × 80',Math.ceil(fb80/3));detail.push(`${fb80} fileur(s) bas de 80 cm : 3 maximum par panneau 62 × 80.`)}
-      if(fb88){add(panels,'62 × 220',Math.ceil(fb88/6));detail.push(`${fb88} fileur(s) bas de 88 cm : jusqu'à 6 par panneau 62 × 220.`)}
-      if(fh60+fh80){add(panels,'39 × 86',Math.ceil((fh60+fh80)/2));detail.push(`${fh60+fh80} fileur(s) haut(s) de 60/80 cm : 2 maximum par panneau 39 × 86.`)}
-      if(fh100){add(panels,'39 × 106',Math.ceil(fh100/2));detail.push(`${fh100} fileur(s) haut(s) de 100 cm : 2 maximum par panneau 39 × 106.`)}
-      if(fc220){add(panels,'62 × 220',Math.ceil(fc220/3));detail.push(`${fc220} fileur(s) colonne de 220 cm : 3 maximum par panneau 62 × 220.`)}
-      if(fc228+fc240){add(panels,'62 × 240',Math.ceil((fc228+fc240)/3));detail.push(`${fc228+fc240} fileur(s) colonne de 228/240 cm : 3 maximum par panneau 62 × 240.`)}
-      if(fc248){add(panels,'62 × 220',Math.ceil(fc248/3));add(panels,'62 × 80',Math.ceil(fc248/6));detail.push(`${fc248} fileur(s) colonne de 248 cm : base 220 cm avec rallonge de 28 cm.`);warnings.push('Les rallonges des fileurs colonne 248 peuvent être réduites si des chutes étroites compatibles sont disponibles.')}
-
-      add(panels,'62 × 80',hl80);add(panels,'62 × 220',hl220);add(panels,'62 × 240',hl240);
-      if(hl80+hl220+hl240)detail.push(`Habillages latéraux saisis : ${hl80} en 62 × 80, ${hl220} en 62 × 220 et ${hl240} en 62 × 240.`);
-
-      let generatedFullChutes=0;
-      if(j88){const full=Math.floor(j88/2),odd=j88%2;add(panels,'62 × 220',full+odd);generatedFullChutes+=full+(odd?4:0);detail.push(`${j88} jambage(s) 62 × 88 : ${full+odd} panneau(x) 62 × 220, deux jambages par panneau.`)}
-      if(j228){add(panels,'62 × 240',j228);detail.push(`${j228} jambage(s) 62 × 228 : un panneau 62 × 240 par jambage.`)}
-      if(j248){add(panels,'62 × 220',j248);const available=Math.floor(n('fullChutes28'))+generatedFullChutes;const missing=Math.max(0,j248-available);add(panels,'62 × 80',Math.ceil(missing/2));detail.push(`${j248} jambage(s) 62 × 248 : un panneau 62 × 220 chacun et ${j248} rallonge(s) de 62 × 28.`);detail.push(`${Math.min(j248,available)} rallonge(s) prise(s) dans les chutes ; ${missing} restant à produire${missing?` dans ${Math.ceil(missing/2)} panneau(x) 62 × 80`:''}.`)}
-
-      const standardLength=n('under39')+n('over39');
-      if(standardLength){add(panels,'62 × 240',Math.ceil(standardLength/240));detail.push(`${standardLength} cm d'habillage horizontal, profondeur 39 cm : ${Math.ceil(standardLength/240)} panneau(x) 62 × 240.`)}
-      const deepLength=n('over60');
-      if(deepLength){add(panels,'62 × 240',Math.ceil(deepLength/240));detail.push(`${deepLength} cm d'habillage de sur-meubles, profondeur 60 cm : ${Math.ceil(deepLength/240)} panneau(x) 62 × 240.`)}
-
-      const entries=Object.entries(panels).filter(([,v])=>v>0);const total=entries.reduce((s,[,v])=>s+v,0);const out=$("calcResult");out.classList.remove('hidden');
-      if(!entries.length){out.innerHTML='<b>Aucun élément sélectionné.</b>';return}
-      out.innerHTML=`<div class="total">${total} panneau${total>1?'x':''} à prévoir</div><h4>Liste par format</h4><ul>${entries.map(([k,v])=>`<li><b>${v} ×</b> panneau ${k} cm</li>`).join('')}</ul><h4>Détail du calcul</h4><ul>${detail.map(x=>`<li>${x}</li>`).join('')}</ul>${warnings.length?`<div class="callout warning"><strong>À vérifier</strong>${warnings.join('<br>')}</div>`:''}<p class="small">Le résultat applique les règles de découpe enregistrées. Contrôler le sens du décor, les chants visibles, les jonctions et les mesures réelles avant commande.</p>`;
+      const pieces=[],warnings=[];
+      const simple=[['fb80','Fileur bas 80',18,80,62],['fb88','Fileur bas 88',18,88,62],['fh60','Fileur haut 60',18,60,39],['fh80','Fileur haut 80',18,80,39],['fh100','Fileur haut 100',18,100,39],['fc220','Fileur colonne 220',18,220,62],['fc228','Fileur colonne 228',18,228,62],['fc240','Fileur colonne 240',18,240,62],['hl80','Habillage latéral 62 × 80',62,80,62],['hl220','Habillage latéral 62 × 220',62,220,62],['hl240','Habillage latéral 62 × 240',62,240,62],['j88','Jambage 62 × 88',62,88,62],['j228','Jambage 62 × 228',62,228,62]];
+      simple.forEach(([id,label,w,l,pw])=>repeat(pieces,q(id),()=>piece(label,w,l,pw,0)));
+      repeat(pieces,q('j248'),i=>piece(`Jambage 248 n°${i+1} — base`,62,220,62,0));
+      repeat(pieces,q('fc248'),i=>piece(`Fileur colonne 248 n°${i+1} — base`,18,220,62,0));
+      addLength(pieces,'under39','Sous meubles hauts, profondeur 39',39);
+      addLength(pieces,'over39','Dessus meubles hauts, profondeur 39',39);
+      addLength(pieces,'under60','Sous meubles, profondeur 60',60);
+      addLength(pieces,'over60','Dessus meubles, profondeur 60',60);
+      repeat(pieces,q('j248'),i=>piece(`Jambage 248 n°${i+1} — rallonge`,62,28,62,2));
+      repeat(pieces,q('fc248'),i=>piece(`Fileur colonne 248 n°${i+1} — rallonge`,18,28,62,2));
+      if(q('fc248'))warnings.push('Les fileurs colonne de 248 cm sont calculés avec une base de 220 cm et une rallonge de 28 cm : valider la jonction et le sens du décor.');
+      const bins=pack(pieces),panels={};bins.forEach(b=>{const key=`${b.w} × ${b.l}`;panels[key]=(panels[key]||0)+1});
+      const entries=Object.entries(panels),out=$("calcResult");out.classList.remove('hidden');
+      if(!pieces.length){out.innerHTML='<b>Aucun élément sélectionné.</b>';return}
+      const scraps=bins.flatMap((b,i)=>b.free.filter(r=>r.w>=18&&r.l>=20).map(r=>`Panneau ${i+1} (${b.w} × ${b.l}) : chute ${r.w} × ${r.l} cm`));
+      const plans=bins.map((b,i)=>`<li><b>Panneau ${i+1} — ${b.w} × ${b.l} cm :</b> ${b.cuts.map(c=>`${c.label} (${c.w} × ${c.l})`).join(' ; ')}</li>`).join('');
+      out.innerHTML=`<div class="total">${bins.length} panneau${bins.length>1?'x':''} à prévoir</div><h4>Liste par format</h4><ul>${entries.map(([k,v])=>`<li><b>${v} ×</b> panneau ${k} cm</li>`).join('')}</ul><h4>Plan de découpe proposé</h4><ul>${plans}</ul><h4>Chutes calculées et encore disponibles</h4>${scraps.length?`<ul>${scraps.map(x=>`<li>${x}</li>`).join('')}</ul>`:'<p>Aucune chute exploitable restante selon ce calpinage.</p>'}${warnings.length?`<div class="callout warning"><strong>À vérifier</strong>${warnings.join('<br>')}</div>`:''}<p class="small">Les chutes affichées sont uniquement celles produites par ce calcul. Elles sont réutilisées automatiquement avant l'ajout d'un panneau. Contrôler le sens du décor, les chants visibles, les jonctions, le trait de scie et les mesures réelles avant commande.</p>`;
     };
     $("resetCalc").onclick=()=>{document.querySelectorAll('#calpinage input[type=checkbox]').forEach(x=>{x.checked=false});document.querySelectorAll('#calpinage input[type=number]').forEach(x=>{x.value=0;if(x.classList.contains('qty'))x.disabled=true});$("calcResult").classList.add('hidden')};
     $("printCalc").onclick=()=>window.print();
