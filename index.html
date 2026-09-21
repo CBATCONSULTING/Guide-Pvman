@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#172554">
+  <title>Guide du PVMAN - Challenge Bat</title>
+  <style>
+    :root{--navy:#172554;--blue:#2563eb;--sky:#eff6ff;--ink:#0f172a;--muted:#64748b;--line:#dbe3ee;--paper:#fff;--bg:#f3f6fa;--orange:#f59e0b;--red:#dc2626;--green:#15803d;--shadow:0 14px 38px rgba(15,23,42,.10)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+    button,input,select{font:inherit}.hidden{display:none!important}
+    .auth-gate{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#e8eef8,#f8fafc)}
+    .auth-card{width:min(440px,100%);padding:28px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 24px 70px rgba(15,23,42,.18)}
+    .brand{display:flex;align-items:center;gap:12px}.brand-mark{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#172554);color:#fff;font-weight:900}.brand-title{font-weight:900}.brand-sub{font-size:12px;color:var(--muted)}
+    .auth-card h1{font-size:26px;margin:22px 0 6px}.auth-card p{color:var(--muted);margin:0 0 18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:13px;font-weight:800}.field input,.field select{width:100%;padding:12px 13px;border:1px solid #cbd5e1;border-radius:11px;background:#fff}.field input:focus,.field select:focus{outline:3px solid #bfdbfe;border-color:var(--blue)}
+    .primary,.secondary,.danger-btn{border:0;border-radius:11px;padding:11px 15px;font-weight:850;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#e2e8f0;color:var(--ink)}.danger-btn{background:#fee2e2;color:#991b1b}.wide{width:100%}.auth-msg{min-height:21px;margin-top:10px;font-size:13px;font-weight:750;color:#b45309}.auth-msg.err{color:#b91c1c}
+    header{position:sticky;top:0;z-index:50;background:rgba(23,37,84,.97);color:#fff;box-shadow:0 8px 24px rgba(15,23,42,.15)}.topbar{max-width:1240px;margin:auto;min-height:72px;padding:11px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}.topbar .brand-sub{color:#cbd5e1}.header-actions{display:flex;align-items:center;gap:9px}.version,.user-pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);font-size:12px;font-weight:800}.logout{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:9px;padding:7px 10px;cursor:pointer}
+    .layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px;padding:24px 20px 60px}.sidebar{position:sticky;top:96px;align-self:start}.search{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#fff}.nav{margin-top:10px;padding:9px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.nav a{display:block;padding:8px 10px;border-radius:9px;color:#334155;text-decoration:none;font-size:14px;font-weight:700}.nav a:hover{background:var(--sky);color:#1d4ed8}
+    main{min-width:0}.hero{padding:32px;border-radius:24px;background:linear-gradient(135deg,#172554,#1d4ed8);color:#fff;box-shadow:var(--shadow)}.eyebrow{text-transform:uppercase;letter-spacing:.11em;font-size:12px;font-weight:900;color:#bfdbfe}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.06;margin:9px 0 14px}.hero p{max-width:760px;margin:0;color:#dbeafe;font-size:17px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.quick div{padding:13px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.09);border-radius:13px;font-size:13px}.quick strong{display:block;font-size:20px}
+    .notice{display:flex;gap:14px;margin:20px 0;padding:18px;border-radius:16px;background:#fff7ed;border:1px solid #fed7aa}.notice-icon{font-size:25px}.notice strong{color:#9a3412}.notice p{margin:3px 0 0;color:#7c2d12}
+    section{scroll-margin-top:95px;margin:20px 0;padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:0 7px 22px rgba(15,23,42,.055)}section h2{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:23px;color:var(--navy)}section h3{margin:22px 0 9px;font-size:17px}section p{margin:8px 0}.lead{color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card{padding:16px;border:1px solid var(--line);border-radius:14px;background:#fbfdff}.card h3{margin:0 0 8px}.card ul,.steps{margin:8px 0;padding-left:22px}.card li,.steps li{margin:6px 0}.tag{display:inline-block;margin:3px 3px 3px 0;padding:3px 8px;border-radius:999px;background:#e0e7ff;color:#3730a3;font-size:12px;font-weight:800}
+    .callout{margin:14px 0;padding:15px 17px;border-left:5px solid var(--blue);border-radius:10px;background:var(--sky)}.callout.warning{border-color:var(--orange);background:#fffbeb}.callout.danger{border-color:var(--red);background:#fef2f2}.callout.success{border-color:var(--green);background:#f0fdf4}.callout strong{display:block;margin-bottom:3px}
+    .checklist{display:grid;gap:8px}.check{display:flex;gap:10px;align-items:flex-start;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:#fff}.check input{margin-top:5px;transform:scale(1.15)}
+    details{border:1px solid var(--line);border-radius:12px;margin:9px 0;background:#fff}summary{cursor:pointer;padding:13px 15px;font-weight:850;color:#1e3a8a}.detail-body{padding:0 15px 15px}
+    .calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.piece-head,.piece-row{display:grid;grid-template-columns:1.4fr .7fr .7fr .55fr auto;gap:8px;align-items:center}.piece-head{font-size:12px;font-weight:850;color:var(--muted);padding:0 3px}.piece-row{margin:8px 0}.piece-row input{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:9px}.piece-row button{padding:8px 11px;border:0;border-radius:9px;background:#fee2e2;color:#991b1b;cursor:pointer}.calc-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.result{margin-top:16px;padding:16px;border-radius:14px;background:#ecfdf5;border:1px solid #bbf7d0}.result strong{font-size:22px;color:#166534}.small{font-size:12px;color:var(--muted)}
+    .footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 20px 34px}.no-results{padding:30px;text-align:center;color:var(--muted)}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static}.nav{display:flex;overflow-x:auto;gap:4px}.nav a{white-space:nowrap}.quick{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr 1fr}.user-pill{display:none}}
+    @media(max-width:560px){.topbar{padding:9px 13px}.topbar .brand-sub{display:none}.brand-mark{width:40px;height:40px}.layout{padding:14px 12px 45px;gap:14px}.hero,section{padding:19px;border-radius:17px}.hero h1{font-size:32px}.notice{padding:14px}.calc-grid{grid-template-columns:1fr}.piece-head{display:none}.piece-row{grid-template-columns:1fr 1fr}.piece-row input:first-child{grid-column:1/-1}.piece-row button{grid-column:1/-1}.version{display:none}}
+    @media print{.auth-gate,header,.sidebar,.calc-actions,.piece-row button{display:none!important}.layout{display:block;padding:0}.hero{background:#fff;color:#000;box-shadow:none;border:1px solid #ddd}.hero p,.eyebrow{color:#333}section{break-inside:avoid;box-shadow:none}.quick div{border-color:#ccc;background:#fff}.footer{padding:10px}}
+  </style>
+</head>
+<body>
+  <div id="authGate" class="auth-gate">
+    <form id="loginForm" class="auth-card">
+      <div class="brand"><div class="brand-mark">CB</div><div><div class="brand-title">Challenge Bat</div><div class="brand-sub">Accès professionnel sécurisé</div></div></div>
+      <h1>Guide du PVMAN</h1>
+      <p>Connectez-vous avec votre adresse professionnelle Challenge Bat.</p>
+      <div class="field"><label for="email">Adresse e-mail</label><input id="email" type="email" autocomplete="username" placeholder="prenom@challengebat.fr" required></div>
+      <div class="field"><label for="password">Mot de passe</label><input id="password" type="password" autocomplete="current-password" required></div>
+      <button class="primary wide" type="submit">Se connecter</button>
+      <div id="authMessage" class="auth-msg" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <div id="app" class="hidden">
+    <header><div class="topbar">
+      <div class="brand"><div class="brand-mark">CB</div><div><div class="brand-title">Guide du PVMAN</div><div class="brand-sub">Challenge Bat</div></div></div>
+      <div class="header-actions"><span class="version">V1.0.0</span><span id="userEmail" class="user-pill"></span><button id="logoutBtn" class="logout">Déconnexion</button></div>
+    </div></header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <input id="search" class="search" type="search" placeholder="Rechercher dans le guide…" aria-label="Rechercher dans le guide">
+        <nav class="nav" aria-label="Sommaire">
+          <a href="#essentiels">Les essentiels</a><a href="#avant">Avant le rendez-vous</a><a href="#chantier">Sur le chantier</a><a href="#conception">Conception</a><a href="#travaux">Travaux</a><a href="#calpinage">Calpinage</a><a href="#plan">Plan PDF et NKP</a><a href="#envoi">Envoi du projet</a><a href="#organisation">Organisation</a>
+        </nav>
+      </aside>
+
+      <main>
+        <div class="hero searchable">
+          <div class="eyebrow">Référentiel métier évolutif</div><h1>Le guide pratique du PVMAN</h1>
+          <p>Les bons réflexes pour préparer la pré-visite, sécuriser le projet cuisine, chiffrer les travaux et transmettre un dossier exploitable par tous.</p>
+          <div class="quick"><div><strong>1</strong>Tout vérifier sur place</div><div><strong>2</strong>Tout annoter clairement</div><div><strong>3</strong>Tout transmettre sans ambiguïté</div></div>
+        </div>
+
+        <div class="notice searchable"><div class="notice-icon">💡</div><div><strong>Modification de projet à distance</strong><p>Si la demande du client ne nécessite pas de nouveau déplacement, envoyer au service pré-visite une demande de règlement de <b>69 € TTC</b> pour modification du projet à distance. Cela évite un retour inutile chez le client et un temps de déplacement non négligeable.</p></div></div>
+
+        <section id="essentiels" class="searchable"><h2>🎯 Les essentiels</h2><p class="lead">Trois règles à appliquer sur chaque dossier.</p>
+          <div class="cards">
+            <div class="card"><h3>Point de départ de la pose</h3><p>Indiquer clairement sur le plan <b>par où commence la pose</b>, avec une flèche et la mention « DÉPART DE POSE ».</p></div>
+            <div class="card"><h3>Responsable des travaux</h3><p>Préciser sans ambiguïté qui réalise chaque intervention électrique et plomberie : client, Challenge Bat ou autre intervenant.</p></div>
+            <div class="card"><h3>Électricité non conforme</h3><p>Informer le client que les appareils électroménagers ne seront pas installés si l'installation électrique nécessaire n'est pas mise en conformité.</p></div>
+            <div class="card"><h3>Dossier lisible</h3><p>Les photos, annotations, mesures et choix client doivent permettre à une autre personne de comprendre le chantier sans appeler le PVMAN.</p></div>
+          </div>
+        </section>
+
+        <section id="avant" class="searchable"><h2>🧰 Avant le rendez-vous</h2>
+          <div class="cards"><div class="card"><h3>Matériel</h3><div class="checklist"><label class="check"><input type="checkbox">Mètre à ruban</label><label class="check"><input type="checkbox">Mètre laser</label><label class="check"><input type="checkbox">Rapporteur d'angles</label><label class="check"><input type="checkbox">Mesureur de terre</label><label class="check"><input type="checkbox">PC portable chargé</label></div></div>
+          <div class="card"><h3>Accès et logiciels</h3><div><span class="tag">Boîte mail</span><span class="tag">Accès Google à distance</span><span class="tag">Extrabat</span><span class="tag">Compte IKEA</span><span class="tag">Foxit</span><span class="tag">Générateur de devis IKEA</span><span class="tag">Intranet Challenge</span><span class="tag">Checklist</span><span class="tag">Pointage</span></div><p class="small">Vérifier également les favoris, les modèles de devis travaux/IKEA, le niveau de difficulté et le code « raison projet ».</p></div></div>
+          <h3>Formation</h3><ul class="steps"><li>Visionner les vidéos explicatives mises à disposition.</li><li>Lire les conditions de vente et les compléments d'information applicables.</li><li>Maintenir le PC et les outils à jour.</li></ul>
+        </section>
+
+        <section id="chantier" class="searchable"><h2>📷 Sur le chantier</h2>
+          <details open><summary>Photos indispensables</summary><div class="detail-body"><ul><li>Respecter la notice « méthode et envoi des photos ».</li><li>Prendre plusieurs vues générales de la pièce.</li><li>Photographier les contraintes, réseaux, murs, angles et accès.</li><li>Ne jamais oublier la mesure et la photo liées à la terre.</li></ul></div></details>
+          <details><summary>Contrôle de la terre</summary><div class="detail-body"><p>Mesurer la terre, consigner le résultat et expliquer au client pourquoi ce contrôle est indispensable à la sécurité et à la faisabilité de l'installation.</p></div></details>
+          <div class="callout success"><strong>Objectif</strong>Les informations collectées doivent suffire pour concevoir, chiffrer et préparer la pose sans zone d'ombre.</div>
+        </section>
+
+        <section id="conception" class="searchable"><h2>📐 Conception de la cuisine</h2>
+          <h3>Cuisines en L ou en U</h3><ol class="steps"><li>Demander si le client souhaite un assemblage usine avec jonction imperceptible.</li><li>Si oui : prévoir une pose à 90° et des plans de travail sur mesure.</li><li>Pour une cuisine en U : anticiper une pose en deux temps, avec pose provisoire puis retour.</li><li>Si non : suivre les murs et prévoir les baguettes de jonction adaptées.</li></ol>
+          <div class="cards"><div class="card"><h3>Plans de travail</h3><ul><li>Déterminer s'ils sont standards ou sur mesure.</li><li>En cas de contrainte contre le mur : contrôler le vide sanitaire et envisager un plan plus profond/sur mesure.</li><li>Ne jamais recouper un plan standard sur toute sa longueur pour réaliser un plan bar.</li></ul></div><div class="card"><h3>Électroménager et meubles</h3><ul><li>Éviter un lave-linge contre un mur : risque de fixation ou d'ouverture de porte.</li><li>Placer un lave-linge intégré entre deux meubles.</li><li>Contrôler la hauteur disponible pour un meuble hotte intégré proche du plafond.</li></ul></div></div>
+        </section>
+
+        <section id="travaux" class="searchable"><h2>🔧 Travaux à identifier et chiffrer</h2>
+          <div class="callout danger"><strong>Travaux bloquants</strong>Ils doivent être identifiés, expliqués au client, attribués à un responsable et réalisés avant la pose lorsqu'ils conditionnent l'installation.</div>
+          <h3>Travaux classiques à contrôler</h3><div class="checklist"><label class="check"><input type="checkbox">Dépose et enlèvement de l'existant</label><label class="check"><input type="checkbox">Regroupement ou modification plomberie</label><label class="check"><input type="checkbox">Modification du fond d'un meuble de cuisine</label><label class="check"><input type="checkbox">Découpes du plan de travail</label><label class="check"><input type="checkbox">Rallonges pour machine à laver</label></div>
+          <div class="callout warning"><strong>Travaux non bloquants</strong>Établir un devis séparé afin de distinguer clairement les prestations complémentaires du périmètre nécessaire à la pose.</div>
+        </section>
+
+        <section id="calpinage" class="searchable"><h2>🪚 Calpinage des panneaux de finition</h2><p class="lead">Méthode initiale pour déterminer les panneaux nécessaires aux jambages, fileurs et habillages. Le calcul donne une estimation minimale ; le sens du décor, les chants visibles et le plan de coupe restent à valider.</p>
+          <ol class="steps"><li><b>Lister chaque pièce</b> : jambage, fileur, joue, bandeau ou habillage.</li><li><b>Noter les dimensions finies</b> en millimètres et la quantité.</li><li><b>Ajouter les marges</b> nécessaires aux coupes, à l'ajustement et au trait de scie.</li><li><b>Repérer le sens du décor</b> et les chants qui devront rester finis.</li><li><b>Positionner d'abord les grandes pièces</b>, puis utiliser les chutes pour les petites.</li><li><b>Prévoir une sécurité</b> si les murs sont irréguliers, les mesures sensibles ou le décor directionnel.</li></ol>
+          <div class="callout"><strong>Règle pratique</strong>Une pièce doit tenir dans le panneau dans son orientation autorisée. La surface seule ne suffit jamais à garantir le calpinage.</div>
+          <h3>Estimateur de quantité</h3>
+          <div class="calc-grid"><div class="field"><label for="panelL">Longueur panneau (mm)</label><input id="panelL" type="number" value="2400" min="1"></div><div class="field"><label for="panelW">Largeur panneau (mm)</label><input id="panelW" type="number" value="620" min="1"></div><div class="field"><label for="kerf">Marge par pièce (mm)</label><input id="kerf" type="number" value="5" min="0"></div><div class="field"><label for="reserve">Réserve (%)</label><input id="reserve" type="number" value="10" min="0" max="100"></div></div>
+          <div class="piece-head"><span>Pièce</span><span>Longueur</span><span>Largeur</span><span>Qté</span><span></span></div><div id="pieces"></div>
+          <div class="calc-actions"><button id="addPiece" class="secondary" type="button">+ Ajouter une pièce</button><button id="calculate" class="primary" type="button">Calculer l'estimation</button><button id="printCalc" class="secondary" type="button">Imprimer</button></div>
+          <div id="calcResult" class="result hidden" aria-live="polite"></div>
+        </section>
+
+        <section id="plan" class="searchable"><h2>🗺️ Plan PDF et notes NKP</h2>
+          <div class="cards"><div class="card"><h3>Notes NKP</h3><ul><li>Ajouter les baguettes de jonction.</li><li>Indiquer le nombre de paquets de pieds.</li><li>Pour les électroménagers : préciser s'ils viennent d'IKEA, s'ils sont déjà sur place et si le client souhaite leur installation.</li><li>Signaler les passages dans les caissons.</li></ul></div><div class="card"><h3>Annotations sur le plan</h3><ul><li>Ajouter le tampon « plan de travail sur mesure ».</li><li>Repérer l'emplacement de l'évier s'il n'est pas IKEA.</li><li>Repérer également la plaque.</li><li>Contrôler les prises au-dessus de la plaque et de l'évier.</li><li><b>Indiquer le départ de pose avec une flèche.</b></li></ul></div></div>
+          <h3>Devis travaux</h3><ul class="steps"><li>Annoter clairement l'électricité : « OK » ou « PAS OK ».</li><li>Vérifier le chiffrage de la pose de la hotte, notamment pour les modèles intégrés.</li><li>Chiffrer les travaux annexes à l'aide du livret PDF.</li></ul>
+        </section>
+
+        <section id="envoi" class="searchable"><h2>✉️ Envoi du projet</h2>
+          <div class="checklist"><label class="check"><input type="checkbox">Vérifier le montant de la pose dans le corps du mail et dans le rapport IKEA.</label><label class="check"><input type="checkbox">Vérifier le calcul des capacités.</label><label class="check"><input type="checkbox">Pour une seconde version, ajouter « V2 » dans le sujet du mail.</label><label class="check"><input type="checkbox">Contrôler que l'attestation de TVA est signée avant tout envoi.</label></div>
+          <div class="callout danger"><strong>Blocage d'envoi</strong>Ne pas envoyer le projet tant que l'attestation de TVA requise n'est pas signée.</div>
+        </section>
+
+        <section id="organisation" class="searchable"><h2>🗂️ Organisation et suivi</h2>
+          <div class="cards"><div class="card"><h3>Centiro</h3><ul><li>Télécharger les pièces jointes nécessaires.</li><li>Passer le dossier en « completed » lorsque le traitement est réellement terminé.</li></ul></div><div class="card"><h3>Sauvegardes</h3><ul><li>Enregistrer les documents au bon emplacement.</li><li>Vérifier la synchronisation OneDrive.</li></ul></div><div class="card"><h3>Mails</h3><ul><li>Programmer les réponses clients lorsqu'elles sont rédigées après 18 h.</li><li>En cas d'absence, rediriger la boîte mail vers le service technique.</li><li>Ne pas modifier le numéro de téléphone configuré pour la récupération de la boîte mail.</li></ul></div><div class="card"><h3>Maintenance</h3><ul><li>Installer les mises à jour du PC et des logiciels.</li><li>Signaler rapidement tout accès ou outil indisponible.</li></ul></div></div>
+        </section>
+        <div id="noResults" class="no-results hidden">Aucune rubrique ne correspond à cette recherche.</div>
+      </main>
+    </div><div class="footer">Guide interne Challenge Bat · Version 1.0.0 · Document évolutif</div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig={apiKey:"AIzaSyB-hKccNAiciGjUeS6L-Ws3KRzYxMyU3L4",authDomain:"cbat-consulting.firebaseapp.com",projectId:"cbat-consulting",storageBucket:"cbat-consulting.firebasestorage.app",messagingSenderId:"258359623144",appId:"1:258359623144:web:4e5a54a09e5ac9245a785d"};
+    firebase.initializeApp(firebaseConfig);
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    const $=id=>document.getElementById(id);
+    function allowed(email){return String(email||"").toLowerCase().endsWith("@challengebat.fr")}
+    firebase.auth().onAuthStateChanged(async user=>{if(user&&!allowed(user.email)){await firebase.auth().signOut();$("authMessage").textContent="Cette application est réservée aux adresses @challengebat.fr.";$("authMessage").className="auth-msg err";return}$("authGate").classList.toggle("hidden",!!user);$("app").classList.toggle("hidden",!user);if(user)$("userEmail").textContent=user.email});
+    $("loginForm").addEventListener("submit",async e=>{e.preventDefault();const msg=$("authMessage");msg.textContent="Connexion…";msg.className="auth-msg";const email=$("email").value.trim();if(!allowed(email)){msg.textContent="Utilisez votre adresse @challengebat.fr.";msg.className="auth-msg err";return}try{await firebase.auth().signInWithEmailAndPassword(email,$("password").value);msg.textContent=""}catch(err){msg.textContent="Connexion impossible. Vérifiez votre adresse et votre mot de passe.";msg.className="auth-msg err"}});
+    $("logoutBtn").addEventListener("click",()=>firebase.auth().signOut());
+
+    const normalize=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+    $("search").addEventListener("input",e=>{const q=normalize(e.target.value.trim());let shown=0;document.querySelectorAll(".searchable").forEach(el=>{const ok=!q||normalize(el.textContent).includes(q);el.classList.toggle("hidden",!ok);if(ok)shown++});$("noResults").classList.toggle("hidden",shown>0)});
+
+    const pieces=$("pieces");
+    function addPiece(name="",l="",w="",qty=1){const row=document.createElement("div");row.className="piece-row";row.innerHTML=`<input class="p-name" aria-label="Nom de la pièce" placeholder="Ex. jambage"><input class="p-l" type="number" min="1" aria-label="Longueur en millimètres" placeholder="L mm"><input class="p-w" type="number" min="1" aria-label="Largeur en millimètres" placeholder="l mm"><input class="p-q" type="number" min="1" value="${qty}" aria-label="Quantité"><button type="button" aria-label="Supprimer la pièce">Supprimer</button>`;row.querySelector(".p-name").value=name;row.querySelector(".p-l").value=l;row.querySelector(".p-w").value=w;row.querySelector("button").onclick=()=>row.remove();pieces.appendChild(row)}
+    addPiece("Jambage",870,620,1);addPiece("Fileur",2200,100,1);
+    $("addPiece").onclick=()=>addPiece();
+    $("calculate").onclick=()=>{const pl=+$('panelL').value,pw=+$('panelW').value,m=+$('kerf').value||0,reserve=+$('reserve').value||0,out=$("calcResult");if(pl<=0||pw<=0){out.classList.remove("hidden");out.innerHTML="Renseignez les dimensions du panneau.";return}let area=0,invalid=[];document.querySelectorAll(".piece-row").forEach(r=>{const n=r.querySelector('.p-name').value||'Pièce',l=+r.querySelector('.p-l').value,w=+r.querySelector('.p-w').value,q=+r.querySelector('.p-q').value||0;if(l>0&&w>0&&q>0){area+=(l+m)*(w+m)*q;if(!((l+m<=pl&&w+m<=pw)||(l+m<=pw&&w+m<=pl)))invalid.push(n)}});const useful=pl*pw;const min=Math.max(1,Math.ceil(area*(1+reserve/100)/useful));out.classList.remove("hidden");out.innerHTML=`<strong>${min} panneau${min>1?'x':''} minimum</strong><p>Surface pièces avec marge et réserve : ${(area*(1+reserve/100)/1e6).toFixed(2)} m² · Surface d'un panneau : ${(useful/1e6).toFixed(2)} m².</p>${invalid.length?`<p style="color:#b91c1c"><b>Attention :</b> ${invalid.join(', ')} ne tient pas dans le panneau indiqué.</p>`:''}<p class="small">Estimation par surface. Vérifier le placement réel des pièces, le sens du décor, les chants et les chutes avant commande.</p>`};
+    $("printCalc").onclick=()=>window.print();
+  </script>
+</body>
+</html>
