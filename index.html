@@ -31,12 +31,13 @@
     .footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 20px 34px}.no-results{padding:30px;text-align:center;color:var(--muted)}
     @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static}.nav{display:flex;overflow-x:auto;gap:4px}.nav a{white-space:nowrap}.quick{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.user-pill{display:none}}
     @media(max-width:700px){.finish-setup{grid-template-columns:1fr}.finish-toggle{grid-column:auto;grid-row:auto;padding:2px 0}}@media(max-width:560px){.topbar{padding:9px 13px}.topbar .brand-sub{display:none}.brand-mark{width:40px;height:40px}.layout{padding:14px 12px 45px;gap:14px}.hero,section{padding:19px;border-radius:17px}.hero h1{font-size:32px}.notice{padding:14px}.calc-row{grid-template-columns:1fr}.length-fields{grid-template-columns:1fr}.format-options{display:grid}.format-choice{justify-content:space-between}.version{display:none}}
+    .guide-mode #calpinage{display:none!important}
     @media print{.auth-gate,header,.sidebar,.calc-actions{display:none!important}.layout{display:block;padding:0}.hero{background:#fff;color:#000;box-shadow:none;border:1px solid #ddd}.hero p,.eyebrow{color:#333}section{break-inside:avoid;box-shadow:none}.quick div{border-color:#ccc;background:#fff}.footer{padding:10px}}
   </style>
   <link rel="icon" href="./favicon.ico?v=132" sizes="any">
   <link rel="shortcut icon" href="./favicon.ico?v=132" type="image/x-icon">
 </head>
-<body>
+<body class="guide-mode">
   <div id="authGate" class="auth-gate">
     <form id="loginForm" class="auth-card">
       <div class="brand"><div class="brand-mark">CB</div><div><div class="brand-title">Challenge Bat</div><div class="brand-sub">Accès professionnel sécurisé</div></div></div>
@@ -52,14 +53,14 @@
   <div id="app" class="hidden">
     <header><div class="topbar">
       <div class="brand"><div class="brand-mark">CB</div><div><div class="brand-title">Guide du PVMAN</div><div class="brand-sub">Challenge Bat</div></div></div>
-      <div class="header-actions"><span class="version">V1.3.4</span><span id="userEmail" class="user-pill"></span><button id="logoutBtn" class="logout">Déconnexion</button></div>
+      <div class="header-actions"><span class="version">V1.3.5</span><span id="userEmail" class="user-pill"></span><button id="logoutBtn" class="logout">Déconnexion</button></div>
     </div></header>
 
     <div class="layout">
       <aside class="sidebar">
         <input id="search" class="search" type="search" placeholder="Rechercher dans le guide…" aria-label="Rechercher dans le guide">
         <nav class="nav" aria-label="Sommaire">
-          <a href="#essentiels">Les essentiels</a><a href="#avant">Avant le rendez-vous</a><a href="#chantier">Sur le chantier</a><a href="#conception">Conception</a><a href="#travaux">Travaux</a><a href="#calpinage">Calpinage</a><a href="#plan">Plan PDF et NKP</a><a href="#envoi">Envoi du projet</a><a href="#organisation">Organisation</a>
+          <a href="#essentiels">Les essentiels</a><a href="#avant">Avant le rendez-vous</a><a href="#chantier">Sur le chantier</a><a href="#conception">Conception</a><a href="#travaux">Travaux</a><a href="#plan">Plan PDF et NKP</a><a href="#envoi">Envoi du projet</a><a href="#organisation">Organisation</a>
         </nav>
       </aside>
 
@@ -140,7 +141,7 @@
         </section>
         <div id="noResults" class="no-results hidden">Aucune rubrique ne correspond à cette recherche.</div>
       </main>
-    </div><div class="footer">Guide interne Challenge Bat · Version 1.3.4 · Catalogue IKEA Cuisine 2026</div>
+    </div><div class="footer">Guide interne Challenge Bat · Version 1.3.5</div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
